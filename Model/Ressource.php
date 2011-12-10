@@ -4,6 +4,7 @@ namespace Ruian\UploadifyBundle\Model;
 use Ruian\UploadifyBundle\Interfaces\RessourceInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Exception;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 /**
 * 
 */
@@ -78,8 +79,8 @@ class Ressource implements RessourceInterface
     public function toArray()
     {
         return array(
+            'folder' => $this->folder,
             'file'   => $this->file,
-            'folder' => $this->folder
         );
     }
 }

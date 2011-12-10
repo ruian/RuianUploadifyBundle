@@ -8,5 +8,9 @@ interface RessourceInterface
 
     public function getFolder();
     public function setFolder($value);
+
+    public function toArray();
+
+    public function upload();
 }
 

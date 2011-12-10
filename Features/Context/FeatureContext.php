@@ -10,6 +10,7 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 use Exception;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 //
 // Require 3rd-party libraries here:
@@ -37,45 +38,61 @@ class FeatureContext extends BehatContext //MinkContext if you want to test web
 //
     protected $obj;
     protected $form;
+    protected $result;
 
     /**
-     * @Given /^I create new instance of "([^"]*)" who embed "([^"]*)"$/
+     * @Given /^I create a model who embed "([^"]*)"$/
      */
-    public function iCreateNewInstanceOfWhoEmbed($argument1, $argument2)
+    public function iCreateAModelWhoEmbed($ressource)
     {
-        $this->obj = new $argument1();
-        $ressource = new $argument2();
-        $this->obj->setEmbed($ressource);
+        $this->obj = new \Ruian\UploadifyBundle\Tests\Model\TestModel();
+        $this->obj->setEmbed(new $ressource());
     }
 
     /**
-     * @When /^I create form with "([^"]*)" who embed "([^"]*)"$/
+     * @Given /^I create a form who embed "([^"]*)"$/
      */
-    public function iCreateFormWithAnd($argument1, $argument2)
+    public function iCreateAFormWhoEmbed($ressourceType)
     {
         $container = $this->getContainer();
-        if (new $argument1() instanceof $this->obj) {
-            $this->form = $container->get('form.factory')->createBuilder('form', $this->obj, array())
-            ->add('embed', new $argument2())
+        $this->form = $container->get('form.factory')->createBuilder('form', $this->obj, array())
+            ->add('embed', new $ressourceType())
             ->getForm();
-        } else {
-            throw new Exception("$argument1 must be an instance of ".get_class($this->obj)."", 1);
+    }
+
+    /**
+     * @When /^I render my form$/
+     */
+    public function iRenderMyForm()
+    {
+        $form_view = $this->form->createView();
+    }
+
+    /**
+     * @Given /^I make a upload request with$/
+     */
+    public function iMakeAUploadRequestWith(TableNode $table)
+    {
+        $table = $table->getHash();
+        $ressource = $this->obj->getEmbed();
+        $ressource->setFile($table[0]['Filedata']);
+        $ressource->setFolder($table[0]['folder']);
+        try {
+            $ressource->upload();
+        } catch (FileException $e) {
+            
+        }
+        $this->result = json_encode($ressource->toArray());
+    }
+
+    /**
+     * @Then /^I should see:$/
+     */
+    public function iShouldSee(PyStringNode $string)
+    {
+        if (0 !== strcmp($string, $this->result)) {
+            throw new Exception("$this->result not equal to $string", 1);
         }
     }
 
-    /**
-     * @Given /^I set "([^"]*)" to "([^"]*)" from form$/
-     */
-    public function iSetToFromForm($argument1, $argument2)
-    {
-        $this->form['embed']->bindRequest();
-    }
-
-    /**
-     * @Then /^I should get :$/
-     */
-    public function iShouldGet(PyStringNode $string)
-    {
-        throw new PendingException();
-    }
 }
