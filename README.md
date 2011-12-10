@@ -194,6 +194,7 @@ namespace XXXX\XXXXBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use XXXX\XXXXBundle\Entity\Profile;
+use XXXX\XXXXBundle\Form\ProfileType;
 
 class ProfileController extends Controller
 {
