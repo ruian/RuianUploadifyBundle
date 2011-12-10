@@ -257,10 +257,10 @@ class ProfileController extends Controller
 ```
 
 ## Script referer to uploadify doc, BUT IMPORTANT
-if these lines are not set, the bundle will not work.
-'_uploadify' : true,
-'_session' : $('id_of_input_avatar_uploadify').attr('data-session'),
-just add them like the example show it.
+    if these lines are not set, the bundle will not work.
+    '_uploadify' : true,
+    '_session' : $('id_of_input_avatar_uploadify').attr('data-session'),
+    just add them like the example show it.
 
 ``` javascript
 $('id_of_input_avatar_uploadify').uploadify({
@@ -275,7 +275,8 @@ $('id_of_input_avatar_uploadify').uploadify({
     'auto'      : true,
     'onComplete'  : function(event, ID, fileObj, response, data) {
         response = jQuery.parseJSON(response);
-        jQuery('#avatar-preview').html("<img src='"+response.folder+response.file+"' />");
+        $('#avatar-preview').html("<img src='"+response.folder+response.file+"' />");
+        $('id_of_input_avatar').attr('val', response.folder+response.file);
     }
   });
 ```
