@@ -23,7 +23,7 @@ install`:
 
 ### Step 2) Register the namespaces
 
-Add the following two namespace entries to the `registerNamespaces` call
+Add the following namespace entries to the `registerNamespaces` call
 in your autoloader:
 
 ``` php
