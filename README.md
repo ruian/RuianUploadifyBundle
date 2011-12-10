@@ -161,7 +161,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 use Ruian\UploadifyBundle\Form\RessourceType;
 
-class MediaGameType extends AbstractType
+class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
