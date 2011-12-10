@@ -55,6 +55,7 @@ public function registerBundles()
 ```
 
 <a name="example"></a>
+## EXAMPLE
 ## Imagine a user profile
 
 ``` php
@@ -261,6 +262,9 @@ class ProfileController extends Controller
     '_uploadify' : true,
     '_session' : $('id_of_input_avatar_uploadify').attr('data-session'),
     just add them like the example show it.
+
+    $('id_of_input_avatar').attr('val', response.folder+response.file);
+    set the value of id_of_input_avatar with the uploadify response with filename and folder
 
 ``` javascript
 $('id_of_input_avatar_uploadify').uploadify({
