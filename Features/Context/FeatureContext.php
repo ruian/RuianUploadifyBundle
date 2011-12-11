@@ -73,10 +73,10 @@ class FeatureContext extends BehatContext //MinkContext if you want to test web
      */
     public function iMakeAUploadRequestWith(TableNode $table)
     {
-        $table = $table->getHash();
+        $table = array_shift($table->getHash());
         $ressource = $this->obj->getEmbed();
-        $ressource->setFile($table[0]['Filedata']);
-        $ressource->setFolder($table[0]['folder']);
+        $ressource->setFile($table['Filedata']);
+        $ressource->setFolder($table['folder']);
         try {
             $ressource->upload();
         } catch (FileException $e) {
