@@ -174,7 +174,7 @@ class ProfileType extends AbstractType
                 )
             ))
             ->add('avatar', 'hidden')
-            ->add('avatar_uploadify', new RessourceType())
+            ->add('avatar_uploadify', "uploadify_ressource")
         ;
     }
 
