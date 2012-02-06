@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 * 
 */
 class Ressource implements RessourceInterface
-{
-    const WEB_DIRECTORY = '/../../../../../web';
-    
+{   
     protected $file;
 
     protected $folder;
@@ -19,6 +17,11 @@ class Ressource implements RessourceInterface
     function __construct()
     {
         
+    }
+
+    public function getWeb()
+    {
+        return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web';
     }
 
     /**
@@ -66,7 +69,7 @@ class Ressource implements RessourceInterface
     {
         if ($this->file instanceof File) {
             $name = sha1($this->file->getClientOriginalName() . uniqid() . getrandmax()) . '.' . $this->file->guessExtension();
-            $this->file->move(__DIR__ . self::WEB_DIRECTORY . $this->folder, $name);
+            $this->file->move($this->getWeb() . $this->folder, $name);
             $this->file = $name;
         } else {
             throw new FileException("It must be a Symfony\Component\HttpFoundation\File\File instance");
