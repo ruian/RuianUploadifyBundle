@@ -194,6 +194,7 @@ namespace XXXX\XXXXBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Ruian\UploadifyBundle\Model\Ressource;
 use XXXX\XXXXBundle\Entity\Profile;
 use XXXX\XXXXBundle\Form\ProfileType;
 
