@@ -193,6 +193,7 @@ class ProfileType extends AbstractType
 namespace XXXX\XXXXBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use XXXX\XXXXBundle\Entity\Profile;
 use XXXX\XXXXBundle\Form\ProfileType;
 
