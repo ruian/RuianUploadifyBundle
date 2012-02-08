@@ -1,0 +1,10 @@
+{
+    "require": {
+        "symfony/symfony" : "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Ruian": "./../../"
+        }
+    }
+}
