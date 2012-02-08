@@ -4,7 +4,8 @@ php:
   - 5.4
 
 before_script: 
-    - mkdir Ruian
-    - cd Ruian
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install
+after_install:
+    - cd ..
+    - mv RuianUploadifyBundle UploadifyBundle
