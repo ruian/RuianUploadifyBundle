@@ -4,7 +4,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Ruian\\UploadifyBundle": "./../"
+            "Ruian": "../../"
         }
-    }
+    },
+    "target-dir": "Ruian/UploadifyBundle"
 }
