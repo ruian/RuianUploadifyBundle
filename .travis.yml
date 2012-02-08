@@ -6,6 +6,8 @@ php:
 before_script: 
     - cd ..
     - mv RuianUploadifyBundle UploadifyBundle
-    - cd UploadifyBundle
+    - cd ..
+    - mv ruian Ruian
+    - cd Ruian/UploadifyBundle
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install
