@@ -1,6 +1,8 @@
 RuianUploadifyBundle
 ===================
 
+[![Build Status](https://secure.travis-ci.org/ruian/RuianUploadifyBundle.png)](http://travis-ci.org/ruian/RuianUploadifyBundle)
+
 ### /Warning\ i made a new version of this bundle you can still use the old one by using the tag v1.0
     [RuianUploadifyBundle]
         git=git://github.com/ruian/RuianUploadifyBundle.git
