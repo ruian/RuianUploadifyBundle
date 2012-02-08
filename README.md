@@ -1,7 +1,7 @@
 RuianUploadifyBundle
 ===================
 
-# Warning i made a new version of this bundle you can still use the old one bu using the tag v1.0
+### /Warning\ i made a new version of this bundle you can still use the old one by using the tag v1.0
     [RuianUploadifyBundle]
         git=git://github.com/ruian/RuianUploadifyBundle.git
         target=bundles/Ruian/UploadifyBundle
