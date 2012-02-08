@@ -1,6 +1,12 @@
 RuianUploadifyBundle
 ===================
 
+# Warning i made a new version of this bundle you can still use the old one bu using the tag v1.0
+    [RuianUploadifyBundle]
+        git=git://github.com/ruian/RuianUploadifyBundle.git
+        target=bundles/Ruian/UploadifyBundle
+        version=v1.0
+
 * [Installation](#installation)
 * [How to](#example)
 
