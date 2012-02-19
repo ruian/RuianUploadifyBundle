@@ -15,9 +15,9 @@
                 },
                 auto      : true,
                 onComplete  : function(event, ID, fileObj, response, data) {
-                    response = JSON.parse(response);
-                    $('#{{ attr['data-preview'] }}').html("<img src='"+response.folder+'/'+response.file+"' />");
-                    $('#{{ attr['data-copy'] }}').attr('val', response.folder+response.file);
+                    response = jQuery.parseJSON(response);
+                    $('#{{ attr['data-preview'] }}').html("<img src='"+response.folder+response.file+"' />");
+                    $('#{{ attr['data-copy'] }}').attr('value', response.folder+response.file);
                 }
             });
         })

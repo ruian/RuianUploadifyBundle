@@ -99,7 +99,7 @@ Create a form associate
                 ->add('picture', 'hidden')
                 ->add('picture_uploadify', 'uploadify_resource', array(
                     'data' => array(
-                        'folder'  => '/uploads/files',
+                        'folder'  => '/uploads/files/',
                         'preview' => 'picture_preview',
                         'path'    => 'AcmeDemoBundle_upload',
                         'copy'    => $this->getName() . '_' . 'picture'
@@ -114,7 +114,7 @@ Create a form associate
 ### Api
 
     // The folder where you to save your files
-    'folder'  => '/uploads/files'
+    'folder'  => '/uploads/files/'
     
     // If you want to have a preview of your download give an ID element from your DOM
     'preview' => 'picture_preview'
