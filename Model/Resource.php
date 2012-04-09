@@ -14,14 +14,16 @@ class Resource implements ResourceInterface
 
     protected $folder;
 
-    function __construct()
+    protected $web_dir;
+
+    function __construct($web_dir)
     {
-        
+        $this->web_dir = $web_dir;
     }
 
     public function getWeb()
     {
-        return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web';
+        return $this->web_dir;
     }
 
     /**
