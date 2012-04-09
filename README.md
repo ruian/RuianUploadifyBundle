@@ -67,7 +67,7 @@ Go into your `app/config.yml` and choose a secret key to encrypt your Session_id
 
 Imagine you have a user model like this
 
-    //Acme/DemoBundle/Model/User.php
+    //Acme/DemoBundle/Model/Picture.php
     <?php
     namespace Acme\DemoBundle\Model;
 
@@ -102,7 +102,7 @@ Imagine you have a user model like this
 
 Create a form associate
 
-    //Acme/DemoBundle/Form/Type/UserType.php
+    //Acme/DemoBundle/Form/Type/PictureType.php
     <?php
     namespace Acme\DemoBundle\Form\Type;
 
@@ -169,8 +169,8 @@ Now we have all elements let's go with our controller and view
 
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\HttpFoundation\Response;
-    use Acme\DemoBundle\Model\User;
-    use Acme\DemoBundle\Form\Type\UserType;
+    use Acme\DemoBundle\Model\Picture;
+    use Acme\DemoBundle\Form\Type\PictureType;
     use Ruian\UploadifyBundle\Model\Resource;
 
     class DemoController extends Controller
