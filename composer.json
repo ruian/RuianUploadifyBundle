@@ -1,11 +1,11 @@
 {
     "name" : "ruian/uploadifybundle",
     "require": {
-        "symfony/symfony" : "*"
+        "symfony/symfony" : "2.1.*"
     },
     "autoload": {
         "psr-0": {
-            "Ruian": "../../"
+            "Ruian": ""
         }
     },
     "target-dir": "Ruian/UploadifyBundle"
