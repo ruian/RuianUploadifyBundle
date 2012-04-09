@@ -71,12 +71,33 @@ Imagine you have a user model like this
     <?php
     namespace Acme\DemoBundle\Model;
 
-    class User
+    class Picture
     {
-        protected $name;
-        protected $picture;
+        protected $data;
 
-        //some methods...
+        public function __construct($data = null)
+        {
+            if (null !== $data) {
+                $this->data = $date;
+            }
+        }
+
+        /** 
+         * @return string
+         */
+        public function getData()
+        {
+            return $this->data;
+        }
+        
+        /**
+         * @param $data
+         * @return void
+         */
+        public function setData($data)
+        {
+            $this->data = $data;
+        }
     }
 
 Create a form associate
@@ -88,26 +109,29 @@ Create a form associate
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormBuilder;
 
-    class UserType extends AbstractType
+    class PictureType extends AbstractType
     {
         public function buildForm(FormBuilder $builder, array $options)
         {
             $builder
-                ->add('name', 'text', array(
-                    'label' => 'Name'
-                ))
-                ->add('picture', 'hidden')
+                ->add('data', 'hidden')
                 ->add('picture_uploadify', 'uploadify_resource', array(
                     'data' => array(
                         'folder'  => '/uploads/files/',
                         'preview' => 'picture_preview',
                         'path'    => 'AcmeDemoBundle_upload',
-                        'copy'    => $this->getName() . '_' . 'picture'
+                        'copy'    => $this->getName() . '_' . 'data'
                     ),
                     'property_path' => false
                 ))
             ;
         }
+
+        public function getName()
+        {
+            return "picture_type";
+        }
+    }
 
         // some code ...
 
@@ -155,8 +179,8 @@ Now we have all elements let's go with our controller and view
 
         public function newAction()
         {
-            $form = $this->createForm(new UserType(), new User());
-            
+            $form = $this->createForm(new PictureType(), new Picture());
+
             // some code ...
 
             return $this->render('AcmeDemoBundle:Demo:new.html.twig', array(
@@ -170,7 +194,7 @@ Now we have all elements let's go with our controller and view
         {
             $request = $this->get('request');
 
-            $entity = new Resource();
+            $entity = new Resource($this->container->getParameter('kernel.root_dir') . '/../web/');
 
             $entity->setFolder($request->request->get('folder'));
             $entity->setFile($request->files->get('Filedata'));
@@ -190,7 +214,7 @@ Now we have all elements let's go with our controller and view
     <head>
         <title></title>
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/ruianuploadify/css/uploadify.css') }}">
-        <script type="text/javascript" src="{{ asset('bundles/ruiandemo/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{{ asset('bundles/ruianuploadify/js/swfobject.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/ruianuploadify/js/uploadify.js') }}"></script>
     </head>
@@ -204,6 +228,11 @@ Now we have all elements let's go with our controller and view
         <!-- some code ... -->
     </body>
     </html>
+
+### Install assets
+    
+    php5 app/console assets:install web/
+
 
 If you prefer you can choose to not use the form theme i give to you but you will need to write all the js :-)
 Or you can just override it into your bundle `RuianUploadifyBundle/Resources/views/Form/fields.html.twig`
