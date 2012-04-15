@@ -3,6 +3,7 @@ namespace Ruian\UploadifyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\Options;
 use Ruian\UploadifyBundle\Model\Encrypt;
 
 class ResourceType extends AbstractType
@@ -19,32 +20,25 @@ class ResourceType extends AbstractType
         return 'file';
     }
 
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
-        $session_id = session_id();
-
-        if (false === array_key_exists('folder', $options['data'])) {
-            throw new \Exception('You must provide a "folder" to save your data', 1);
-        }
-
-        if (false === array_key_exists('path', $options['data'])) {
-            throw new \Exception('You must provide a "path" to save your data', 1);
-        }
-
-        if (false === array_key_exists('copy', $options['data'])) {
-            throw new \Exception('You must provide a "copy"', 1);
-        }
-
+        $self = $this;
         return array(
-            'data_class' => 'Ruian\UploadifyBundle\Model\Resource',
-            'attr'       => array(
-                'data-session'  => urlencode($this->encrypt($session_id)),
-                'data-folder'   => $options['data']['folder'],
-                'data-preview'  => array_key_exists('preview', $options['data']) ? $options['data']['preview'] : null,
-                'data-path'     => $options['data']['path'],
-                'data-copy'     => $options['data']['copy'],
-            ),
-            'required' => false
+            'data_class' => function (Options $options) {
+                return 'Ruian\UploadifyBundle\Model\Resource';
+            },
+            'attr' => function (Options $options) use ($self) {
+                return array(
+                    'data-session'  => urlencode($self->encrypt(session_id())),
+                    'data-folder'   => $options['data']['folder'],
+                    'data-preview'  => array_key_exists('preview', $options['data']) ? $options['data']['preview'] : null,
+                    'data-path'     => $options['data']['path'],
+                    'data-copy'     => $options['data']['copy'],
+                );
+            },
+            'data_class' => function (Options $options) {
+                return false;
+            }
         );
     }
 
@@ -53,7 +47,7 @@ class ResourceType extends AbstractType
         return 'uploadify';
     }
 
-    protected function encrypt($string)
+    public function encrypt($string)
     {
         $crypt = new Encrypt($this->token);
         return $crypt->encrypt($string);
