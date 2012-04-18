@@ -1,16 +1,10 @@
 parameters:
-#    ruian_uploadify.example.class: Ruian\UploadifyBundle\Example
+   form.extension.uploadify.class: Ruian\UploadifyBundle\Form\Extension\UploadifyExtension
 
 services:
-    ruian.uploadify:
-        class: Ruian\UploadifyBundle\Listener\RequestListener
+    form.extension.uploadify:
+        class : %form.extension.uploadify.class%
         arguments: [%ruian.uploadify.token%]
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 200 }
-
-    form.type.uploadify_ressource:
-        class : Ruian\UploadifyBundle\Form\Type\ResourceType
-        arguments: [%ruian.uploadify.token%]
-        tags:
-            - { name: form.type, alias: uploadify_resource }
+            - { name: form.type_extension, alias: uploadify_extension }
     
