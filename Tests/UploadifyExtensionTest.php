@@ -23,21 +23,20 @@ class UploadifyExtensionTest extends TypeTestCase
             ->add($this->factory->createNamedBuilder('text', 'child', "hello world", array(
                 'uploadify_enabled' => true,
                 'uploadify' => array(
-                    
+                    'auto' => false
                 )
             )))
             ->getForm()
             ->createView();
-
-            //var_dump($view->getChild('child')->getVars());
-
-        $this->assertTrue(true);
+        $vars = $view->getChild('child')->getVars();
+        $uploadify = json_decode($vars['attr'][1], true);
+        $this->assertTrue($uploadify['auto'] == false);
     }
 
     protected function getExtensions()
     {
         return array_merge(parent::getExtensions(), array(
-            new UploadifyExtension($this->router, $this->token, array()),
+            new UploadifyExtension($this->router, $this->token, $this->container),
         ));
     }
 }

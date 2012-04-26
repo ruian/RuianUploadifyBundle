@@ -3,6 +3,14 @@
     <div class="uploadify">
         {{ block('field_widget') }}
     </div>
-    <div id="{{ attr['data-preview'] }}"></div>
+    <div id="{{ attr['data-preview'] }}">
+
+    </div>
+    
+    <script type="text/javascript">
+    $("#{{id}}").uploadify({
+        {{ attr['data-uploadify'] }}
+    });
+    </script>
 {% endspaceless %}
 {% endblock %}

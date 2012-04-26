@@ -18,6 +18,8 @@ abstract class TypeTestCase extends \PHPUnit_Framework_TestCase
 
     protected $token;
 
+    protected $container;
+
     protected function setUp()
     {
         if (!class_exists('Symfony\Component\EventDispatcher\EventDispatcher')) {
@@ -27,6 +29,7 @@ abstract class TypeTestCase extends \PHPUnit_Framework_TestCase
         $this->router = $this->getMockBuilder('Symfony\Component\Routing\Router')->disableOriginalConstructor()->getMock();
         $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->token = $this->getMockBuilder('Ruian\UploadifyBundle\Model\Encrypt')->disableOriginalConstructor()->getMock();
+        $this->container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
         $this->factory = new FormFactory($this->getExtensions());
         $this->builder = new FormBuilder(null, $this->factory, $this->dispatcher);
     }
