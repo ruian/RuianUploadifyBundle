@@ -4,10 +4,14 @@
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {% endspaceless %}
 {% if data_uploadify is defined %}
+<div id="uploadify-{{id}}"></div>
     <script type="text/javascript">
-    $("#{{id}}").uploadify(
+    $("#uploadify-{{id}}").uploadify(
         {{ data_uploadify|raw }}
     );
+    $("#uploadify-{{id}}").uploadify('setting', 'onUploadSuccess', function(file, data, response){
+        $("#{{id}}").attr('value', data);
+    });
     </script>
 {% endif %}
 {% endblock field_widget %}
