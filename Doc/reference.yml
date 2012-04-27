@@ -1,5 +1,6 @@
 ruian_uploadify:
-    token: XXXXX
+    token: # Your token to encrypt your session_id
+    # reference http://www.uploadify.com/documentation/
     options:
         auto:               true
         buttonClass:        'uploadify-button'
@@ -26,6 +27,7 @@ ruian_uploadify:
         requeueErrors:      false
         successTimeout:     30
         swf:                # Location of your uploadify swf
-        uploader:           # route for your uploader action
+        # route for your uploader action
+        uploader:           uploadify_upload
         uploadLimit:        999
         width:              120

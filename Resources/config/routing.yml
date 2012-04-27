@@ -1,0 +1,3 @@
+uploadify_upload:
+    pattern:  /uploadify/upload
+    defaults: { _controller: RuianUploadifyBundle:Uploadify:upload }

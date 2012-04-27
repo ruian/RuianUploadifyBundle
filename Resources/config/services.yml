@@ -7,6 +7,12 @@ services:
         class : %encrypt.uploadify.class%
         arguments: [%ruian.uploadify.token%]
 
+    listener.uploadify:
+        class: Ruian\UploadifyBundle\Listener\RequestListener
+        arguments: [@encryption.uploadify]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 200 }
+            
     form.extension.uploadify:
         class : %form.extension.uploadify.class%
         arguments: [@router, @encryption.uploadify, %ruian.uploadify.options%]
