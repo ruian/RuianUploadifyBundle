@@ -10,7 +10,7 @@ class UploadifyController extends Controller
     public function uploadAction(Request $request)
     {
         // Get options from the DIC
-        $options = $this->container->get('uploadify.options');
+        $options = $this->container->getParameter('uploadify.options');
 
         $filename = $options['fileObjName'];
         $folder   = $options['folderUpload'];
