@@ -43,7 +43,7 @@ class FormTypeUploadifyExtension extends AbstractTypeExtension
         $uploadify_attr = $this->createAttributes($options['uploadify']);
 
         $builder
-            ->setAttribute('data_uploadify', $uploadify_attr)
+            ->setAttribute('data_uploadify', stripslashes($uploadify_attr))
         ;
     }
 
