@@ -9,7 +9,7 @@ services:
 
     form.extension.uploadify:
         class : %form.extension.uploadify.class%
-        arguments: [@router, @encrypt.uploadify, %ruian.uploadify.options%]
+        arguments: [@router, @encryption.uploadify, %ruian.uploadify.options%]
         tags:
             - { name: form.type_extension, alias: text }
     
