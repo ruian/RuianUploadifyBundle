@@ -58,7 +58,7 @@ class FormTypeUploadifyExtension extends AbstractTypeExtension
     /**
      * Get the default value by the config
      */
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'uploadify_enabled' => false,
@@ -68,7 +68,7 @@ class FormTypeUploadifyExtension extends AbstractTypeExtension
 
     protected function createAttributes(array $options_uploadify)
     {
-        $default_options = $this->getDefaultOptions(array());
+        $default_options = $this->getDefaultOptions();
         $options = array_merge($default_options['uploadify'], $options_uploadify);
 
         return json_encode($options);
