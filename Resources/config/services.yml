@@ -11,5 +11,5 @@ services:
         class : %form.extension.uploadify.class%
         arguments: [@router, @encrypt.uploadify, @service_container]
         tags:
-            - { name: form.type_extension, alias: field }
+            - { name: form.type_extension, alias: text }
     

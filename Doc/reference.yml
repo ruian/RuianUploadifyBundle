@@ -1,0 +1,31 @@
+uploadify:
+    token: XXXXX
+    options:
+        auto:               true
+        buttonClass:        'uploadify-button'
+        buttonCursor:       'hand'
+        buttonImage:        null
+        buttonText:         'SELECT FILES'
+        checkExisting:      false
+        debug:              false
+        fileObjName:        Filedata
+        fileSizeLimit:      0
+        fileTypeDesc:       'All Files'
+        fileTypeExts:       '*.*'
+        formData:           null
+        height:             30
+        method:             'post'
+        multi:              false
+        overrideEvents:     null
+        preventCaching:     true
+        progressData:       'percentage'
+        queueID:            false
+        queueSizeLimit:     999
+        removeCompleted:    true
+        removeTimeout:      3
+        requeueErrors:      false
+        successTimeout:     30
+        swf:                # Location of your uploadify swf
+        uploader:           # route for your uploader action
+        uploadLimit:        999
+        width:              120
