@@ -25,10 +25,7 @@ class UploadifyExtensionTest extends TypeTestCase
             ->getForm()
             ->createView();
 
-        $vars = $view->getChild('child')->getVars();
-        $uploadify = json_decode($vars['attr'][1], true);
-
-        $this->assertTrue($uploadify['auto'] == false);
+        $this->assertTrue($view['child']->has('data_uploadify'));
     }
 
     protected function getExtensions()
