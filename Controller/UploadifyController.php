@@ -14,7 +14,7 @@ class UploadifyController extends Controller
 
         $filename = $options['fileObjName'];
         $folder   = $options['folderUpload'];
-        $web_dir  = $this->container->getParameter('kernel.root') . '/../web/';
+        $web_dir  = $this->container->getParameter('kernel.root_dir') . '/../web/';
 
         $file = $request->files->get($filename);
         $file->move($web_dir. '/' .$folder);
