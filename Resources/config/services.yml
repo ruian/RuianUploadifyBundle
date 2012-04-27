@@ -1,10 +1,15 @@
 parameters:
-   form.extension.uploadify.class: Ruian\UploadifyBundle\Form\Extension\UploadifyExtension
+   encrypt.uploadify.class: Ruian\UploadifyBundle\Model\Encrypt
+   form.extension.uploadify.class: Ruian\UploadifyBundle\Form\Extension\Uploadify\Type\FormTypeUploadifyExtension
 
 services:
+    encrypt.uploadify:
+        class : %encrypt.uploadify.class%
+        arguments: [%ruian.uploadify.token%]
+
     form.extension.uploadify:
         class : %form.extension.uploadify.class%
-        arguments: [%ruian.uploadify.token%]
+        arguments: [@router, @encrypt.uploadify, @service_container]
         tags:
-            - { name: form.type_extension, alias: uploadify_extension }
+            - { name: form.type_extension, alias: field }
     

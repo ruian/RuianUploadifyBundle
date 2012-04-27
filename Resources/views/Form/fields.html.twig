@@ -1,16 +1,13 @@
-{% block uploadify %}
+{% block field_widget %}
 {% spaceless %}
-    <div class="uploadify">
-        {{ block('field_widget') }}
-    </div>
-    <div id="{{ attr['data-preview'] }}">
-
-    </div>
-    
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endspaceless %}
+{% if data_uploadify is defined %}
     <script type="text/javascript">
     $("#{{id}}").uploadify({
-        {{ attr['data-uploadify'] }}
+        {{ data_uploadify|raw }}
     });
     </script>
-{% endspaceless %}
-{% endblock %}
+{% endif %}
+{% endblock field_widget %}

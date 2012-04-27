@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
                 ->variableNode('token')->defaultValue('my_secret_token')->end()
                 ->variableNode('auto')->defaultValue(true)->end()
                 ->variableNode('buttonClass')->defaultValue('uploadify-button')->end()
-                ->variableNode('buttonCursor')->defaultValue('hand')->validate()->ifInArray(array('hand', 'arrow'))->end()
+                ->variableNode('buttonCursor')->defaultValue('hand')->end()
                 ->variableNode('buttonImage')->defaultNull()->end()
                 ->variableNode('buttonText')->defaultValue('SELECT FILES')->end()
                 ->variableNode('checkExisting')->defaultFalse()->end()

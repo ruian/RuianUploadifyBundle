@@ -11,11 +11,6 @@ class UploadifyExtensionTest extends TypeTestCase
         parent::setUp();
     }
 
-    public function GoutteTest()
-    {
-        
-    }
-
     public function testEnableUploadify()
     {
         $view = $this->factory
@@ -23,13 +18,16 @@ class UploadifyExtensionTest extends TypeTestCase
             ->add($this->factory->createNamedBuilder('text', 'child', "hello world", array(
                 'uploadify_enabled' => true,
                 'uploadify' => array(
-                    'auto' => false
+                    'auto' => false,
+                    'uploader' => 'homepage'
                 )
             )))
             ->getForm()
             ->createView();
+
         $vars = $view->getChild('child')->getVars();
         $uploadify = json_decode($vars['attr'][1], true);
+
         $this->assertTrue($uploadify['auto'] == false);
     }
 
