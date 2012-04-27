@@ -16,7 +16,7 @@ abstract class TypeTestCase extends \PHPUnit_Framework_TestCase
 
     protected $router;
 
-    protected $token;
+    protected $encryption;
 
     protected $container;
 
@@ -28,7 +28,7 @@ abstract class TypeTestCase extends \PHPUnit_Framework_TestCase
 
         $this->router = $this->getMockBuilder('Symfony\Component\Routing\Router')->disableOriginalConstructor()->getMock();
         $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-        $this->token = $this->getMockBuilder('Ruian\UploadifyBundle\Model\Encrypt')->disableOriginalConstructor()->getMock();
+        $this->encryption = $this->getMockBuilder('Ruian\UploadifyBundle\Model\Encryption')->disableOriginalConstructor()->getMock();
         $this->container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
         $this->factory = new FormFactory($this->getExtensions());
         $this->builder = new FormBuilder(null, $this->factory, $this->dispatcher);

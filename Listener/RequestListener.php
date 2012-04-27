@@ -3,8 +3,8 @@ namespace Ruian\UploadifyBundle\Listener;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Ruian\UploadifyBundle\Model\Encrypt;
 
+use Ruian\UploadifyBundle\Model\Encryption;
 
 /**
  * Adds session to uploadify request
@@ -13,11 +13,11 @@ use Ruian\UploadifyBundle\Model\Encrypt;
  */
 class RequestListener
 {
-    protected $token;
+    protected $encryption;
 
-    public function __construct($token)
+    public function __construct(Encryption $encryption)
     {
-        $this->token = $token;
+        $this->encryption = $encryption;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -36,7 +36,8 @@ class RequestListener
 
     protected function decrypt($string)
     {
-        $crypt = new Encrypt($this->token);
-        return $crypt->decrypt(preg_replace('/ /', '+', $string));
+        $string = preg_replace('/ /', '+', $string);
+        
+        return $this->encryption->decrypt($string);
     }
 }

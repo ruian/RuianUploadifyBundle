@@ -7,20 +7,20 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-use Ruian\UploadifyBundle\Model\Encrypt;
+use Ruian\UploadifyBundle\Model\Encryption;
 
 class FormTypeUploadifyExtension extends AbstractTypeExtension
 {
     protected $router;
 
-    protected $token;
+    protected $encryption;
 
     protected $default_options;
 
-    public function __construct(RouterInterface $router, Encrypt $token, array $options)
+    public function __construct(RouterInterface $router, Encryption $encryption, array $options)
     {
         $this->router = $router;
-        $this->token = $token;
+        $this->encryption = $encryption;
         $this->default_options = $this->createDefaultOptions($options);
     }
 
@@ -87,6 +87,12 @@ class FormTypeUploadifyExtension extends AbstractTypeExtension
     {
         $default_options = array();
         $default_options['uploadify_enabled'] = false;
+
+        // add encrypt session_id to formData
+        if (true === isset($options['formData']) && $formData = $options['formData']) {
+            $formData = array_merge(array('_uploadify_sessionid' => $this->encryption->encrypt(session_id())), $formData);
+            $options['formData'] = json_encode((object) $formData);
+        }
 
         // add uploader route
         if (true === isset($options['uploader']) && $route = $options['uploader']) {

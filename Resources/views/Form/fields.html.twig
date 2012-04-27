@@ -3,15 +3,20 @@
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {% endspaceless %}
+
 {% if data_uploadify is defined %}
-<div id="uploadify-{{id}}"></div>
-    <script type="text/javascript">
-    $("#uploadify-{{id}}").uploadify(
-        {{ data_uploadify|raw }}
-    );
-    $("#uploadify-{{id}}").uploadify('setting', 'onUploadSuccess', function(file, data, response){
-        $("#{{id}}").attr('value', data);
+<div id="uploadify-{{id}}" class="uploadify-container"></div>
+<script type="text/javascript">
+    $(function(){
+        $("#uploadify-{{id}}").uploadify(
+            {{ data_uploadify|raw }}
+        );
+        // Put the data value afeter upload success
+        $("#uploadify-{{id}}").uploadify('settings', 'onUploadSuccess', function(file, data, response){
+            $("#{{id}}").attr('value', data);
+        });
     });
-    </script>
+</script>
 {% endif %}
+
 {% endblock field_widget %}

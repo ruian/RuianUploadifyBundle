@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->variableNode('token')->defaultValue('my_secret_token')->end()
+                ->variableNode('token')->isRequired()->end()
                 ->arrayNode('options')
                     ->children()
                         ->variableNode('auto')->defaultValue(true)->end()

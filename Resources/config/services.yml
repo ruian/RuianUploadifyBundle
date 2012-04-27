@@ -1,9 +1,9 @@
 parameters:
-   encrypt.uploadify.class: Ruian\UploadifyBundle\Model\Encrypt
+   encrypt.uploadify.class: Ruian\UploadifyBundle\Model\Encryption
    form.extension.uploadify.class: Ruian\UploadifyBundle\Form\Extension\Uploadify\Type\FormTypeUploadifyExtension
 
 services:
-    encrypt.uploadify:
+    encryption.uploadify:
         class : %encrypt.uploadify.class%
         arguments: [%ruian.uploadify.token%]
 

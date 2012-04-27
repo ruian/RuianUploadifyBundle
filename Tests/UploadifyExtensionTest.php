@@ -31,7 +31,7 @@ class UploadifyExtensionTest extends TypeTestCase
     protected function getExtensions()
     {
         return array_merge(parent::getExtensions(), array(
-            new UploadifyExtension($this->router, $this->token, array()),
+            new UploadifyExtension($this->router, $this->encryption, array()),
         ));
     }
 }
