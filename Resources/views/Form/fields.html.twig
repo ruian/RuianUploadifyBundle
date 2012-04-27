@@ -5,9 +5,9 @@
 {% endspaceless %}
 {% if data_uploadify is defined %}
     <script type="text/javascript">
-    $("#{{id}}").uploadify({
+    $("#{{id}}").uploadify(
         {{ data_uploadify|raw }}
-    });
+    );
     </script>
 {% endif %}
 {% endblock field_widget %}
