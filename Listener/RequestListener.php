@@ -28,16 +28,16 @@ class RequestListener
         
         $request = $event->getRequest();
         
-        if ($request->request->get('_sessionid') && $request->request->get('_uploadify')) {
+        if ($request->request->has('_uploadify_sessionid')) {
             $request->cookies->set(session_name(), 1);
-            session_id($this->decrypt($request->request->get('_sessionid')));
+            session_id($this->decrypt($request->request->get('_uploadify_sessionid')));
         }
     }
 
     protected function decrypt($string)
     {
         $string = preg_replace('/ /', '+', $string);
-        
+
         return $this->encryption->decrypt($string);
     }
 }
