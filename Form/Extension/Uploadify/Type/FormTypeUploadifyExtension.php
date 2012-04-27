@@ -89,9 +89,12 @@ class FormTypeUploadifyExtension extends AbstractTypeExtension
         $default_options['uploadify_enabled'] = false;
 
         // add encrypt session_id to formData
+        $session = array('_uploadify_sessionid' => $this->encryption->encrypt(session_id()));
         if (true === isset($options['formData']) && $formData = $options['formData']) {
-            $formData = array_merge(array('_uploadify_sessionid' => $this->encryption->encrypt(session_id())), $formData);
+            $formData = array_merge($session, $formData);
             $options['formData'] = json_encode((object) $formData);
+        } else {
+            $options['formData'] = $session;
         }
 
         // add uploader route
