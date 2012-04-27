@@ -54,7 +54,7 @@ class Configuration implements ConfigurationInterface
                         ->variableNode('requeueErrors')->defaultFalse()->end()
                         ->variableNode('successTimeout')->defaultValue(30)->end()
                         ->variableNode('uploader')->defaultValue('uploadify_upload')->end()
-                        
+                        ->variableNode('folderUpload')->defaultValue('/uploads')->end()
                         ->variableNode('swf')->isRequired()->end()
 
                         ->variableNode('uploadLimit')->defaultValue(999)->end()
