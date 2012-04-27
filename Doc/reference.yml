@@ -1,4 +1,4 @@
-uploadify:
+ruian_uploadify:
     token: XXXXX
     options:
         auto:               true
