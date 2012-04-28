@@ -26,8 +26,7 @@ ruian_uploadify:
         removeTimeout:      3
         requeueErrors:      false
         successTimeout:     30
-        swf:                # Location of your uploadify swf
-        # route for your uploader action
-        uploader:           uploadify_upload
+        swf:                '/swf/uploadify.swf' # Location of your uploadify swf inside web directory
+        uploader:           uploadify_upload # route for your uploader action
         uploadLimit:        999
         width:              120

@@ -15,11 +15,17 @@ class RequestListener
 {
     protected $encryption;
 
+    /**
+     * @param Encryption $encryption
+     */
     public function __construct(Encryption $encryption)
     {
         $this->encryption = $encryption;
     }
 
+    /**
+     * @param  GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
@@ -34,6 +40,10 @@ class RequestListener
         }
     }
 
+    /**
+     * @param  string $string
+     * @return string
+     */
     protected function decrypt($string)
     {
         $string = preg_replace('/ /', '+', $string);
