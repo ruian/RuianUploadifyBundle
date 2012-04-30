@@ -85,7 +85,7 @@ a. install with composer
             "sensio/generator-bundle": "dev-master",
             "jms/security-extra-bundle": "1.1.0",
             "jms/di-extra-bundle": "1.0.1",
-            "ruian/uploadifybundle": "dev-master"
+            "ruian/uploadifybundle": "dev-dev"
         },
         "scripts": {
             "post-install-cmd": [

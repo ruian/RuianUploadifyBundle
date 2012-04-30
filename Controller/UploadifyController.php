@@ -16,14 +16,18 @@ class UploadifyController extends Controller
         $folder   = $options['folderUpload'];
         $web_dir  = $this->container->getParameter('kernel.root_dir') . '/../web/';
 
-
-        $file = $request->files->get($filename);
-        $name = $file->getFilename();
-        $extension = $file->getExtension();
-
-        $file->move($web_dir. '/' .$folder, $name . $extension);
-        
         $response = new Response();
+
+        if (true === $request->files->has($filename)) {
+            $file = $request->files->get($filename);
+            $name = $file->getFilename();
+            $extension = $file->guessExtension();
+            $data = sprintf('%s.%s', $name, $extension);
+
+            $file->move($web_dir. '/' .$folder, $data);
+
+            $response->setContent($data);
+        }
 
         return $response;
     }
