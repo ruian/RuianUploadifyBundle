@@ -1,5 +1,5 @@
 {
-    "name" : "ruian/uploadifybundle",
+    "name" : "kazooilabs/uploadifybundle",
     "require": {
         "symfony/symfony" : "2.1.*"
     },
@@ -8,5 +8,5 @@
             "Ruian": ""
         }
     },
-    "target-dir": "Ruian/UploadifyBundle"
+    "target-dir": "Kazooilabs/UploadifyBundle"
 }
